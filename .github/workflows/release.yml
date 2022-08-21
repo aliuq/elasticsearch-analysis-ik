@@ -19,6 +19,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - run: npx conventional-github-releaser -p angular
-      env:
-        CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/releases/*.zip
